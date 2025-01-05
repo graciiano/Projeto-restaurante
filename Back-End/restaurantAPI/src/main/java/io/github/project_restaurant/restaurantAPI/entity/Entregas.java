@@ -1,0 +1,26 @@
+package io.github.project_restaurant.restaurantAPI.entity;
+
+import io.github.project_restaurant.restaurantAPI.entity.Enum.StatusEntrega;
+import jakarta.persistence.*;
+import lombok.*;
+
+@Table(name = "ENTREGAS")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Entity
+public class Entregas {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_entrega")
+    @SequenceGenerator(name = "seq_entrega", sequenceName = "seq_entrega", allocationSize = 1)
+    @Column(name = "ID_ENTREGA")
+    private Integer idEntrega;
+    @Column(name = "QUANTIDADE")
+    private Integer quantidade;
+    @Column(name =  "PRECO_UNITARIO")
+    private double precoUnitario;
+    @Column(name = "STATUS_ENTREGA")
+    private StatusEntrega statusEntrega;
+}
