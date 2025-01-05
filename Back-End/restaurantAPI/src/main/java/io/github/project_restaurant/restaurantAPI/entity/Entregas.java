@@ -1,8 +1,11 @@
 package io.github.project_restaurant.restaurantAPI.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.github.project_restaurant.restaurantAPI.entity.Enum.StatusEntrega;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Table(name = "ENTREGAS")
 @AllArgsConstructor
@@ -21,6 +24,11 @@ public class Entregas {
     private Integer quantidade;
     @Column(name =  "PRECO_UNITARIO")
     private double precoUnitario;
+    @Enumerated(EnumType.STRING)
     @Column(name = "STATUS_ENTREGA")
     private StatusEntrega statusEntrega;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "entrega", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Pedidos> pedidos;
 }
