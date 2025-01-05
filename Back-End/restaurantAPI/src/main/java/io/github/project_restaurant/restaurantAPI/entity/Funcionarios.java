@@ -23,6 +23,7 @@ public class Funcionarios {
     private String contato;
     @Column(name = "ENDERECO")
     private String endereco;
-    @Column(name = "DISPONIBILIDADE")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "DISPONIBILIDADE", nullable = false)
     private Disponibilidade disponibilidade;
 }

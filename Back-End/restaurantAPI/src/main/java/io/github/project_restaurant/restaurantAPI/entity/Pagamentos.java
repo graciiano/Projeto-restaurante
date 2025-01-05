@@ -1,8 +1,11 @@
 package io.github.project_restaurant.restaurantAPI.entity;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.github.project_restaurant.restaurantAPI.entity.Enum.FormaPagamento;
 import jakarta.persistence.*;
 import lombok.*;
-
+import java.math.BigDecimal;
+import java.util.List;
 
 @Table(name = "PAGAMENTOS")
 @AllArgsConstructor
@@ -17,10 +20,21 @@ public class Pagamentos {
     @SequenceGenerator(name = "seq_pagamento", sequenceName = "seq_pagamento", allocationSize = 1)
     @Column(name = "ID_PAGAMENTO")
     private Integer idPagamento;
-    @Column(name = "ID_PEDIDO")
-    private Integer idPedido;
-    @Column(name = "VALOR_PAGO")
-    private double valorPago;
-    @Column(name = "FORMA_PAGAMENTO")
+
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_PEDIDO", referencedColumnName = "ID_PEDIDO", nullable = false)
+    private Pedidos pedido;
+
+    @Column(name = "VALOR_PAGO", nullable = false, precision = 10, scale = 2)
+    private BigDecimal valorPago;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "FORMA_PAGAMENTO", nullable = false)
     private FormaPagamento formaPagamento;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "pedido", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Pagamentos> pagamentos;
 }

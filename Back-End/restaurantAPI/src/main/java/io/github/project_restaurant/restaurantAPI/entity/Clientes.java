@@ -1,7 +1,10 @@
 package io.github.project_restaurant.restaurantAPI.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Table(name = "CLIENTES")
 @AllArgsConstructor
@@ -17,9 +20,13 @@ public class Clientes {
     @Column(name = "ID_CLIENTE")
     private Integer idCliente;
     @Column(name = "NOME")
-    private Integer nome;
+    private String nome;
     @Column(name = "CONTATO")
     private String contato;
     @Column(name =  "ENDERECO")
     private String endereco;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Pedidos> pedidos;
 }
