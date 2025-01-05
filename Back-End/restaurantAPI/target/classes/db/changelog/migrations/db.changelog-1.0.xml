@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <changeSet id="1" author="diogo.graciano">
+        <sql dbms="oracle">
+            CREATE TABLE restaurantes (
+            id_restaurante NUMBER PRIMARY KEY,
+            nome VARCHAR2(100) NOT NULL,
+            endereco VARCHAR2(200) NOT NULL,
+            contato VARCHAR2(15) NOT NULL,
+            horario_abertura DATE NOT NULL,
+            horario_fechamento DATE NOT NULL
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="2" author="diogo.graciano">
+        <sql dbms="oracle">
+            CREATE TABLE funcionarios (
+            id_funcionario NUMBER PRIMARY KEY,
+            nome VARCHAR2(100) NOT NULL,
+            contato VARCHAR2(15) NOT NULL,
+            disponibilidade VARCHAR2(50) NOT NULL
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="3" author="diogo.graciano">
+        <sql dbms="oracle">
+            CREATE TABLE clientes (
+            id_cliente NUMBER PRIMARY KEY,
+            nome VARCHAR2(100) NOT NULL,
+            contato VARCHAR2(15) NOT NULL,
+            endereco VARCHAR2(200) NOT NULL
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="4" author="diogo.graciano">
+        <sql dbms="oracle">
+            CREATE TABLE pedidos (
+            id_pedido NUMBER PRIMARY KEY,
+            id_cliente NUMBER NOT NULL,
+            data_pedido DATE NOT NULL,
+            status_pedido VARCHAR2(50) NOT NULL,
+            endereco_entrega VARCHAR2(200) NOT NULL,
+            desconto NUMBER(10, 2) DEFAULT 0 NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+            CONSTRAINT fk_cliente_pedido FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente) ON DELETE CASCADE
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="5" author="diogo.graciano">
+        <sql dbms="oracle">
+            CREATE TABLE itens_menu (
+            id_item_menu NUMBER PRIMARY KEY,
+            nome VARCHAR2(100) NOT NULL,
+            descricao VARCHAR2(200) NOT NULL,
+            preco NUMBER(10, 2) NOT NULL
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="6" author="diogo.graciano">
+        <sql dbms="oracle">
+            CREATE TABLE itens_pedido (
+            id_item_pedido NUMBER PRIMARY KEY,
+            id_pedido NUMBER NOT NULL,
+            id_item_menu NUMBER NOT NULL,
+            quantidade NUMBER NOT NULL,
+            preco_total NUMBER(10, 2) NOT NULL,
+            CONSTRAINT fk_pedido_item FOREIGN KEY (id_pedido) REFERENCES pedidos(id_pedido) ON DELETE CASCADE,
+            CONSTRAINT fk_item_menu FOREIGN KEY (id_item_menu) REFERENCES itens_menu(id_item_menu)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="7" author="diogo.graciano">
+        <sql dbms="oracle">
+            CREATE TABLE entregas (
+            id_entrega NUMBER PRIMARY KEY,
+            id_pedido NUMBER NOT NULL,
+            quantidade NUMBER NOT NULL,
+            preco_unitario NUMBER(10, 2) NOT NULL,
+            status_entrega VARCHAR2(50) NOT NULL,
+            CONSTRAINT fk_pedido_entrega FOREIGN KEY (id_pedido) REFERENCES pedidos(id_pedido) ON DELETE CASCADE
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="8" author="diogo.graciano">
+        <sql dbms="oracle">
+            CREATE TABLE pagamentos (
+            id_pagamento NUMBER PRIMARY KEY,
+            id_pedido NUMBER NOT NULL,
+            forma_pagamento VARCHAR2(50) NOT NULL,
+            valor_pago NUMBER(10, 2) NOT NULL,
+            CONSTRAINT fk_pedido_pagamento FOREIGN KEY (id_pedido) REFERENCES pedidos(id_pedido) ON DELETE CASCADE
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="9" author="diogo.graciano">
+        <sql dbms="oracle">
+            CREATE TABLE logs (
+            id_log NUMBER PRIMARY KEY,
+            tabela VARCHAR2(50) NOT NULL,
+            acao VARCHAR2(200) NOT NULL,
+            data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="10" author="diogo.graciano">
+        <sql dbms="oracle">
+            CREATE SEQUENCE seq_restaurante START WITH 1 INCREMENT BY 1;
+            CREATE SEQUENCE seq_funcionario START WITH 1 INCREMENT BY 1;
+            CREATE SEQUENCE seq_cliente START WITH 1 INCREMENT BY 1;
+            CREATE SEQUENCE seq_pedido START WITH 1 INCREMENT BY 1;
+            CREATE SEQUENCE seq_item_menu START WITH 1 INCREMENT BY 1;
+            CREATE SEQUENCE seq_item_pedido START WITH 1 INCREMENT BY 1;
+            CREATE SEQUENCE seq_entrega START WITH 1 INCREMENT BY 1;
+            CREATE SEQUENCE seq_pagamento START WITH 1 INCREMENT BY 1;
+            CREATE SEQUENCE seq_log START WITH 1 INCREMENT BY 1;
+        </sql>
+    </changeSet>
+
+    <changeSet id="11" author="diogo.graciano">
+        <sql dbms="oracle">
+            -- Inserts
+
+            -- Restaurantes
+            INSERT INTO restaurantes (id_restaurante, nome, endereco, contato, horario_abertura, horario_fechamento)
+            VALUES (seq_restaurante.NEXTVAL, 'Restaurante Sabor Caseiro', 'Rua Principal, 123', '99999-0001', TO_DATE('08:00', 'HH24:MI'), TO_DATE('20:00', 'HH24:MI'));
+
+            -- Funcionários
+            INSERT INTO funcionarios (id_funcionario, nome, contato, disponibilidade)
+            VALUES (seq_funcionario.NEXTVAL, 'João Silva', '99999-0002', 'Disponivel');
+
+            INSERT INTO funcionarios (id_funcionario, nome, contato, disponibilidade)
+            VALUES (seq_funcionario.NEXTVAL, 'Maria Oliveira', '99999-0003', 'Indisponivel');
+
+            -- Clientes
+            INSERT INTO clientes (id_cliente, nome, contato, endereco)
+            VALUES (seq_cliente.NEXTVAL, 'Carlos Santos', '99999-0004', 'Rua Nova, 456');
+
+            INSERT INTO clientes (id_cliente, nome, contato, endereco)
+            VALUES (seq_cliente.NEXTVAL, 'Ana Souza', '99999-0005', 'Avenida Central, 789');
+
+            -- Itens do Menu
+            INSERT INTO itens_menu (id_item_menu, nome, descricao, preco)
+            VALUES (seq_item_menu.NEXTVAL, 'Prato Executivo', 'Arroz, feijão, carne e salada', 25.50);
+
+            INSERT INTO itens_menu (id_item_menu, nome, descricao, preco)
+            VALUES (seq_item_menu.NEXTVAL, 'Prato Light', 'Arroz integral, frango grelhado e legumes', 30.00);
+
+            -- Pedidos
+            INSERT INTO pedidos (id_pedido, id_cliente, data_pedido, status_pedido, endereco_entrega, desconto)
+            VALUES (seq_pedido.NEXTVAL, 1, SYSDATE, 'Em andamento', 'Rua Nova, 456', 5.00);
+
+            -- Itens do Pedido
+            INSERT INTO itens_pedido (id_item_pedido, id_pedido, id_item_menu, quantidade, preco_total)
+            VALUES (seq_item_pedido.NEXTVAL, 1, 1, 2, 51.00);
+
+            -- Entregas
+            INSERT INTO entregas (id_entrega, id_pedido, quantidade, preco_unitario, status_entrega)
+            VALUES (seq_entrega.NEXTVAL, 1, 2, 25.50, 'Em andamento');
+
+            -- Pagamentos
+            INSERT INTO pagamentos (id_pagamento, id_pedido, forma_pagamento, valor_pago)
+            VALUES (seq_pagamento.NEXTVAL, 1, 'Pix', 46.00);
+
+            -- Logs
+            INSERT INTO logs (id_log, tabela, acao)
+            VALUES (seq_log.NEXTVAL, 'pedidos', 'Pedido criado com status Em andamento');
+        </sql>
+    </changeSet>
+</databaseChangeLog>
