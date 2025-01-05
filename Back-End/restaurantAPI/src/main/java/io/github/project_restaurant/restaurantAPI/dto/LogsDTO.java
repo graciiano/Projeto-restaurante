@@ -1,8 +1,11 @@
 package io.github.project_restaurant.restaurantAPI.dto;
 
+import lombok.Data;
+
 import java.time.LocalDateTime;
 
-public class Logs {
+@Data
+public class LogsDTO {
 
     private Integer idLog;
     private String tabela;
