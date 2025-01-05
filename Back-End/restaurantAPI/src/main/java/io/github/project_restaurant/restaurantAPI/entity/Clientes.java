@@ -20,6 +20,6 @@ public class Clientes {
     private Integer nome;
     @Column(name = "CONTATO")
     private String contato;
-    @Column(name =  "CONTATO")
+    @Column(name =  "ENDERECO")
     private String endereco;
 }

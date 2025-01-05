@@ -1,13 +1,13 @@
 -- Tabelas
 
-	CREATE TABLE restaurantes (
-	    id_restaurante NUMBER PRIMARY KEY,
-	    nome VARCHAR2(100) NOT NULL,
-	    endereco VARCHAR2(200) NOT NULL,
-	    contato VARCHAR2(15) NOT NULL,
-	    horario_abertura DATE NOT NULL,
-	    horario_fechamento DATE NOT NULL
-	);
+CREATE TABLE restaurantes (
+    id_restaurante NUMBER PRIMARY KEY,
+    nome VARCHAR2(100) NOT NULL,
+    endereco VARCHAR2(200) NOT NULL,
+    contato VARCHAR2(15) NOT NULL,
+    horario_abertura DATE NOT NULL,
+    horario_fechamento DATE NOT NULL
+);
 
 CREATE TABLE funcionarios (
     id_funcionario NUMBER PRIMARY KEY,
