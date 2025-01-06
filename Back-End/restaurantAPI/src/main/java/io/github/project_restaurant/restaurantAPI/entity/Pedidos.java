@@ -8,12 +8,12 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Entity
 @Table(name = "PEDIDOS")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity
 public class Pedidos {
 
     @Id
@@ -35,14 +35,22 @@ public class Pedidos {
     @Column(name = "DESCONTO")
     private double desconto;
 
+
+
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_CLIENTE", referencedColumnName = "ID_CLIENTE", nullable = false)
     private Clientes cliente;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_ENTREGA", referencedColumnName = "ID_ENTREGA", nullable = true)
     private Entregas entrega;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "pedido", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ItemPedido> itensPedido;
+
+
 }
+

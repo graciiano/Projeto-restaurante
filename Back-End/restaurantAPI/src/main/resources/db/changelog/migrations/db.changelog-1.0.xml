@@ -141,10 +141,10 @@
 
             -- Funcionários
             INSERT INTO funcionarios (id_funcionario, nome, contato, disponibilidade)
-            VALUES (seq_funcionario.NEXTVAL, 'João Silva', '99999-0002', 'Disponivel');
+            VALUES (seq_funcionario.NEXTVAL, 'João Silva', '99999-0002', 'DISPONIVEL');
 
             INSERT INTO funcionarios (id_funcionario, nome, contato, disponibilidade)
-            VALUES (seq_funcionario.NEXTVAL, 'Maria Oliveira', '99999-0003', 'Indisponivel');
+            VALUES (seq_funcionario.NEXTVAL, 'Maria Oliveira', '99999-0003', 'INDISPONIVEL');
 
             -- Clientes
             INSERT INTO clientes (id_cliente, nome, contato, endereco)
@@ -162,7 +162,7 @@
 
             -- Pedidos
             INSERT INTO pedidos (id_pedido, id_cliente, data_pedido, status_pedido, endereco_entrega, desconto)
-            VALUES (seq_pedido.NEXTVAL, 1, SYSDATE, 'Em andamento', 'Rua Nova, 456', 5.00);
+            VALUES (seq_pedido.NEXTVAL, 1, SYSDATE, 'FINALIZADO', 'Rua Nova, 456', 5.00);
 
             -- Itens do Pedido
             INSERT INTO itens_pedido (id_item_pedido, id_pedido, id_item_menu, quantidade, preco_total)
@@ -170,7 +170,7 @@
 
             -- Entregas
             INSERT INTO entregas (id_entrega, id_pedido, quantidade, preco_unitario, status_entrega)
-            VALUES (seq_entrega.NEXTVAL, 1, 2, 25.50, 'Em andamento');
+            VALUES (seq_entrega.NEXTVAL, 1, 2, 25.50, 'ENTREGUE');
 
             -- Pagamentos
             INSERT INTO pagamentos (id_pagamento, id_pedido, forma_pagamento, valor_pago)
@@ -178,7 +178,7 @@
 
             -- Logs
             INSERT INTO logs (id_log, tabela, acao)
-            VALUES (seq_log.NEXTVAL, 'pedidos', 'Pedido criado com status Em andamento');
+            VALUES (seq_log.NEXTVAL, 'pedidos', 'Pedido criado com status ENTREGUE');
         </sql>
     </changeSet>
 </databaseChangeLog>

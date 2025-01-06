@@ -13,8 +13,8 @@ import java.util.List;
 @Service
 public class ItemMenuService {
 
-    private ItemMenuRepository itemMenuRepository;
-    private ObjectMapper objectMapper;
+    private final ItemMenuRepository itemMenuRepository;
+    private final ObjectMapper objectMapper;
 
     public List<ItemMenuDTO> list() {
         return itemMenuRepository.findAll().stream()

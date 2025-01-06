@@ -19,14 +19,18 @@ public class Clientes {
     @SequenceGenerator(name = "seq_cliente", sequenceName = "seq_cliente", allocationSize = 1)
     @Column(name = "ID_CLIENTE")
     private Integer idCliente;
+
     @Column(name = "NOME")
     private String nome;
+
     @Column(name = "CONTATO")
     private String contato;
-    @Column(name =  "ENDERECO")
+
+    @Column(name = "ENDERECO")
     private String endereco;
 
     @JsonIgnore
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Pedidos> pedidos;
-}
+    }
+

@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Data
-public class pagamentoCreateDTO {
+public class PagamentoCreateDTO {
 
     private FormaPagamento formaPagamento;
     @NotNull

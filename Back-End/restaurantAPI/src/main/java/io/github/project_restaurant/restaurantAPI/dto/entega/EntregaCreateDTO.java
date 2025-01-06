@@ -15,5 +15,5 @@ public class EntregaCreateDTO {
     private Integer quantidade;
     @NotNull
     private double precoUnitario;
-    private StatusEntrega statusEntrega;
+    private String statusEntrega;
 }

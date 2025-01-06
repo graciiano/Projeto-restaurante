@@ -7,6 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @Data
-public class FuncionarioDTO {
+public class FuncionarioDTO extends FuncionarioCreateDTO {
     private Integer idFuncionario;
 }

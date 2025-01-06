@@ -5,8 +5,6 @@ import io.github.project_restaurant.restaurantAPI.entity.Enum.StatusEntrega;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
 @Table(name = "ENTREGAS")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,6 +27,7 @@ public class Entregas {
     private StatusEntrega statusEntrega;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "entrega", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Pedidos> pedidos;
+    @ManyToOne
+    @JoinColumn(name = "id_pedido")
+    private Pedidos pedido;
 }

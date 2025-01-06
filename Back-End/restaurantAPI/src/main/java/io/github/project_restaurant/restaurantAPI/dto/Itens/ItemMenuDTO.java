@@ -7,6 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @Data
-public class ItemMenuDTO {
+public class ItemMenuDTO extends ItemMenuCreateDTO  {
     private Integer idItemMenu;
 }

@@ -13,13 +13,30 @@ import java.util.List;
 @Service
 public class PedidoService {
 
-    private PedidoRepository pedidoRepository;
-    private ObjectMapper objectMapper;
+    private final PedidoRepository pedidoRepository;
+    private final ObjectMapper objectMapper;
 
     public List<PedidoDTO> list() {
         return pedidoRepository.findAll()
                 .stream()
-                .map(pedido -> objectMapper.convertValue(pedido, PedidoDTO.class))
+                .map(pedido -> {
+                    PedidoDTO pedidoDTO = new PedidoDTO();
+                    pedidoDTO.setIdPedido(pedido.getIdPedido());
+                    pedidoDTO.setDataPedido(pedido.getDataPedido());
+                    pedidoDTO.setStatusPedido(pedido.getStatusPedido());
+                    pedidoDTO.setEnderecoEntrega(pedido.getEnderecoEntrega());
+                    if (pedido.getEntrega() != null) {
+                        pedidoDTO.setIdEntrega(pedido.getEntrega().getIdEntrega());
+                    }
+                    pedidoDTO.setDesconto(pedido.getDesconto());
+
+                    if (pedido.getCliente() != null) {
+                        pedidoDTO.setIdCliente(pedido.getCliente().getIdCliente());
+                    }
+
+                    return pedidoDTO;
+                })
                 .toList();
     }
+
 }

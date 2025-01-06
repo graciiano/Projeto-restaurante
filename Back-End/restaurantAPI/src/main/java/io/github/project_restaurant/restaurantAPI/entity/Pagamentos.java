@@ -5,14 +5,13 @@ import io.github.project_restaurant.restaurantAPI.entity.Enum.FormaPagamento;
 import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
-import java.util.List;
 
+@Entity
 @Table(name = "PAGAMENTOS")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity
 public class Pagamentos {
 
     @Id
@@ -20,7 +19,6 @@ public class Pagamentos {
     @SequenceGenerator(name = "seq_pagamento", sequenceName = "seq_pagamento", allocationSize = 1)
     @Column(name = "ID_PAGAMENTO")
     private Integer idPagamento;
-
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
@@ -33,8 +31,4 @@ public class Pagamentos {
     @Enumerated(EnumType.STRING)
     @Column(name = "FORMA_PAGAMENTO", nullable = false)
     private FormaPagamento formaPagamento;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "pedido", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Pagamentos> pagamentos;
 }

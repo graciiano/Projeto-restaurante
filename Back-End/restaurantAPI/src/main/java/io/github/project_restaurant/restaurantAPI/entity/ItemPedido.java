@@ -1,5 +1,6 @@
 package io.github.project_restaurant.restaurantAPI.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
@@ -18,10 +19,12 @@ public class ItemPedido {
     @Column(name = "ID_ITEM_PEDIDO")
     private Integer idItemPedido;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_PEDIDO", referencedColumnName = "ID_PEDIDO", nullable = false)
     private Pedidos pedido;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_ITEM_MENU", referencedColumnName = "ID_ITEM_MENU", nullable = false)
     private ItemMenu itemMenu;
@@ -30,5 +33,6 @@ public class ItemPedido {
     private Integer quantidade;
 
     @Column(name = "PRECO_TOTAL", nullable = false, precision = 10, scale = 2)
-    private BigDecimal precoTotal;
+    private double precoTotal;
+
 }

@@ -17,6 +17,8 @@ public class PedidoCreateDTO {
     private LocalDateTime dataPedido;
     private StatusPedido statusPedido;
     @NotEmpty
-    private String endercoEntrega;
+    private String enderecoEntrega;
     private double desconto;
+
+
 }

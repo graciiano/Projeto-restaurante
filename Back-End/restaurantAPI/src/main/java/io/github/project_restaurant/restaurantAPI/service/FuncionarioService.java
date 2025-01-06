@@ -13,8 +13,8 @@ import java.util.List;
 @Service
 public class FuncionarioService {
 
-    private FuncionarioRepository funcionarioRepository;
-    private ObjectMapper objectMapper;
+    private final FuncionarioRepository funcionarioRepository;
+    private final ObjectMapper objectMapper;
 
     public List<FuncionarioDTO> list() {
         return funcionarioRepository.findAll().stream()

@@ -3,7 +3,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Table(name = "LOGS")
 @AllArgsConstructor
@@ -24,6 +23,4 @@ public class Logs {
     private String acao;
     @Column(name = "DATA_HORA")
     private LocalDateTime dataHora;
-    @OneToMany(mappedBy = "itemMenu", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<ItemPedido> itensPedido;
 }

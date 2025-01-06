@@ -8,11 +8,18 @@
     <changeSet id="13" author="diogo.graciano">
         <sql dbms="oracle">
             INSERT INTO pedidos (id_pedido, id_cliente, data_pedido, status_pedido, endereco_entrega, desconto)
-            VALUES (seq_pedido.NEXTVAL, 1, SYSDATE, 'Em andamento', 'Rua Nova, 456', 5.00);
+            VALUES (seq_pedido.NEXTVAL, 1, SYSDATE, 'FINALIZADO', 'Rua Nova, 456', 5.00);
 
 
             INSERT INTO entregas (id_entrega, quantidade, preco_unitario, status_entrega, id_pedido)
-            VALUES (seq_entrega.NEXTVAL, 5, 25.00, 'Em andamento', 1);
+            VALUES (seq_entrega.NEXTVAL, 5, 25.00, 'ENTREGUE', 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="15" author="diogo.graciano">
+        <sql dbms="oracle">
+            ALTER TABLE PEDIDOS ADD ID_ENTREGA NUMBER;
+            ALTER TABLE PEDIDOS ADD CONSTRAINT FK_PEDIDOS_ENTREGA FOREIGN KEY (ID_ENTREGA) REFERENCES ENTREGAS(ID_ENTREGA);
         </sql>
     </changeSet>
 

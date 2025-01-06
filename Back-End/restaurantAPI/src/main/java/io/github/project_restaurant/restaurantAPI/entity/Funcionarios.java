@@ -21,8 +21,6 @@ public class Funcionarios {
     private String nome;
     @Column(name = "CONTATO")
     private String contato;
-    @Column(name = "ENDERECO")
-    private String endereco;
     @Enumerated(EnumType.STRING)
     @Column(name = "DISPONIBILIDADE", nullable = false)
     private Disponibilidade disponibilidade;
