@@ -1,7 +1,7 @@
 package io.github.project_restaurant.restaurantAPI.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 import java.util.List;

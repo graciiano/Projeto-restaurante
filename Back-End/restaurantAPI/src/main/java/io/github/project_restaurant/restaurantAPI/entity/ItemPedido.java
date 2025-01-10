@@ -1,9 +1,8 @@
 package io.github.project_restaurant.restaurantAPI.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
-import java.math.BigDecimal;
 
 @Table(name = "ITENS_PEDIDO")
 @AllArgsConstructor
@@ -32,7 +31,7 @@ public class ItemPedido {
     @Column(name = "QUANTIDADE", nullable = false)
     private Integer quantidade;
 
-    @Column(name = "PRECO_TOTAL", nullable = false, precision = 10, scale = 2)
+    @Column(name = "PRECO_TOTAL", nullable = false)
     private double precoTotal;
 
 }

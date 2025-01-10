@@ -2,7 +2,7 @@ package io.github.project_restaurant.restaurantAPI.dto.funcionario;
 
 
 import io.github.project_restaurant.restaurantAPI.entity.Enum.Disponibilidade;
-import jakarta.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotEmpty;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;

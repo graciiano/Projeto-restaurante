@@ -1,7 +1,7 @@
 package io.github.project_restaurant.restaurantAPI.entity;
 
 import io.github.project_restaurant.restaurantAPI.entity.Enum.Disponibilidade;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 @Table(name = "FUNCIONARIOS")

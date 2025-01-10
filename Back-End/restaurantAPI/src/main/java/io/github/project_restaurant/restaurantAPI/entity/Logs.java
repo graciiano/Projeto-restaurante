@@ -1,5 +1,5 @@
 package io.github.project_restaurant.restaurantAPI.entity;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;

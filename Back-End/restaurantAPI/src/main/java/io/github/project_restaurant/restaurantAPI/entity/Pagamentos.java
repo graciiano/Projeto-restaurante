@@ -2,7 +2,7 @@ package io.github.project_restaurant.restaurantAPI.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.github.project_restaurant.restaurantAPI.entity.Enum.FormaPagamento;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
 
@@ -25,7 +25,7 @@ public class Pagamentos {
     @JoinColumn(name = "ID_PEDIDO", referencedColumnName = "ID_PEDIDO", nullable = false)
     private Pedidos pedido;
 
-    @Column(name = "VALOR_PAGO", nullable = false, precision = 10, scale = 2)
+    @Column(name = "VALOR_PAGO", nullable = false)
     private BigDecimal valorPago;
 
     @Enumerated(EnumType.STRING)

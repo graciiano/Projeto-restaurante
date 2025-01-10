@@ -2,7 +2,7 @@ package io.github.project_restaurant.restaurantAPI.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.github.project_restaurant.restaurantAPI.entity.Enum.StatusEntrega;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 @Table(name = "ENTREGAS")

@@ -2,7 +2,7 @@ package io.github.project_restaurant.restaurantAPI.entity;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 @Table(name = "RESTAURANTES")

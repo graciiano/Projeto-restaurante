@@ -1,7 +1,7 @@
 package io.github.project_restaurant.restaurantAPI.dto.pedido;
 
 import io.github.project_restaurant.restaurantAPI.entity.Enum.StatusPedido;
-import jakarta.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotEmpty;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;

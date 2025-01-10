@@ -1,6 +1,6 @@
 package io.github.project_restaurant.restaurantAPI.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
 
@@ -24,6 +24,6 @@ public class ItemMenu {
     @Column(name = "DESCRICAO", nullable = false, length = 255)
     private String descricao;
 
-    @Column(name = "PRECO", nullable = false, precision = 10, scale = 2)
+    @Column(name = "PRECO", nullable = false)
     private BigDecimal preco;
 }
