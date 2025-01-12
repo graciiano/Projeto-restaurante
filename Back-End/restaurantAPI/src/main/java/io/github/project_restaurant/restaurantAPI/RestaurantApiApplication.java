@@ -1,4 +1,4 @@
-package io.github.project_restaurant.restaurantAPI;
+;package io.github.project_restaurant.restaurantAPI;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

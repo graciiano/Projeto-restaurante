@@ -17,8 +17,8 @@ import java.util.List;
 public class Pedidos {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_pedidos")
-    @SequenceGenerator(name = "seq_pedidos", sequenceName = "seq_pedidos", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_pedido")
+    @SequenceGenerator(name = "seq_pedido", sequenceName = "seq_pedido", allocationSize = 1)
     @Column(name = "ID_PEDIDO")
     private Integer idPedido;
 
